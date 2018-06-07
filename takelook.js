@@ -40,18 +40,23 @@ const renderSearch = async searchValue => {
     img.setAttribute('width','150');
     img.addEventListener('click', () => renderShow(_links.self));
     listItem.append(img);
+
+    const nameAndGenres = document.createElement('div');
+    nameAndGenres.classList.add('name-genres');
     
     const showName = document.createElement('h2');
     showName.classList.add('show-name');
     showName.innerText = name;
     showName.addEventListener('click', () => renderShow(_links.self));
-    listItem.append(showName);
+    nameAndGenres.append(showName);
 
     const showGenres = document.createElement('p');
     showGenres.classList.add('genres');
     const genresList = genres.map(genre => `<span class="genre">${genre}</span>`);
     showGenres.innerHTML = `Genres ${genresList.join(', ')}`;
-    listItem.append(showGenres);
+    nameAndGenres.append(showGenres);
+
+    listItem.append(nameAndGenres);
 
     searchResultList.append(listItem);
   });
@@ -69,7 +74,7 @@ const renderShow = async ({ href }) => {
   const showName = document.createElement('h1');
   showName.classList.add('show-name');
   showName.innerText = name;
-  show.append(showName);
+  contentDiv.append(showName);
 
   const img = document.createElement('img');
   if (!image) {
@@ -117,5 +122,7 @@ const renderShow = async ({ href }) => {
   });
   episodesTable.append(tbody);
 
-  contentDiv.append(episodesTable);
+  episodes.append(episodesTable);
+
+  contentDiv.append(episodes);
 };
