@@ -74,7 +74,7 @@ const renderShow = async ({ href }) => {
   const showName = document.createElement('h1');
   showName.classList.add('show-name');
   showName.innerText = name;
-  show.append(showName);
+  contentDiv.append(showName);
 
   const img = document.createElement('img');
   if (!image) {
@@ -122,5 +122,7 @@ const renderShow = async ({ href }) => {
   });
   episodesTable.append(tbody);
 
-  contentDiv.append(episodesTable);
+  episodes.append(episodesTable);
+
+  contentDiv.append(episodes);
 };
