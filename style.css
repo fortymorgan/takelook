@@ -34,16 +34,23 @@ button.search-button {
   background: #00998d;
 }
 
-h1.search-head {
+div.content {
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+h1.search-head,
+h1.show-name {
   margin: 0;
-  padding: 20px 0 10px 40px;
+  padding-bottom: 10px;
   font-size: 42px;
-  font-weight: 100;
+  font-weight: normal;
 }
 
 ul {
   list-style: none;
   margin: 0;
+  padding: 0;
 }
 
 ul li {
@@ -81,4 +88,53 @@ span.genre {
   color: #00998d;
   font-weight: normal;
   cursor: pointer;
+}
+
+div.show {
+  display: flex;
+  padding-bottom: 30px;
+}
+
+div.summary p {
+  margin: 0;
+  padding-left: 17px;
+}
+
+div.episodes h2 {
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+div.episodes table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr th,
+tbody tr td {
+  padding: 10px;
+}
+
+thead tr {
+  background: #f8f8f8;
+}
+
+tbody tr:nth-child(even) {
+  background: #f1f1f1;
+}
+
+span.episode-name {
+  color: #6bc3bc;
+  cursor: pointer;
+}
+
+th {
+  text-align: left;
+  width: 50%;
+}
+
+td.airdate {
+  color: #939aa7;
 }
