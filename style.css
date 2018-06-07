@@ -1,0 +1,30 @@
+div.header {
+  display: flex;
+  padding: 20px 0 20px 80px;
+  background: #3f3f3f;
+}
+
+input.search {
+  padding: 12px;
+  width: 457px;
+  border: none;
+  outline: none;
+  border-top-left-radius: 19px;
+  border-bottom-left-radius: 19px;
+}
+
+::-webkit-input-placeholder {
+  font-size: 16px;
+  color: #cfcfcf;
+  font-weight: bold;
+}
+
+button.search-button {
+  padding: 12px;
+  width: 115px;
+  border: none;
+  outline: none;
+  border-top-right-radius: 19px;
+  border-bottom-right-radius: 19px;
+  background: #00998d;
+}
