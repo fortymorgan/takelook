@@ -1,67 +1,27 @@
+const { render } = require('./render');
+const pushHistoryState = require('./pushHistory');
+
 const input = document.querySelector('.search');
 const button = document.querySelector('.search-button');
 const contentDiv = document.querySelector('.content');
 
-button.addEventListener('click', () => renderSearch(input.value));
+button.addEventListener('click', () => {
+  pushHistoryState('search', input.value);
+  render();
+});
+
 input.addEventListener('keydown', (event) => {
   if (event.keyCode === 13) {
-    renderSearch(input.value);
+    pushHistoryState('search', input.value);
+    render();
   }
 });
 
-const resetResult = () => {
-  contentDiv.innerHTML = '';
-  input.value = '';
-}
+window.onpopstate = render;
 
-const renderSearch = async searchValue => {
-  resetResult();
-  const header = document.createElement('h1');
-  header.classList.add('search-head');
-  header.innerText = 'Search result';
-  contentDiv.append(header);
+render();
 
-  const searchUrl = `http://api.tvmaze.com/search/shows?q=${searchValue.replace(' ', '%20')}`;
-  const searchResult = await fetch(searchUrl)
-    .then(blob => blob.json());
 
-  const searchResultList = document.createElement('ul');
-  searchResult.forEach(({ show }) => {
-    const listItem = document.createElement('li');
-
-    const { image, _links, name, genres } = show;
-
-    const img = document.createElement('img');
-    if (!image) {
-      img.src = 'no-image.png';
-    } else {
-      img.src = image.medium
-    }
-    img.setAttribute('width','150');
-    img.addEventListener('click', () => renderShow(_links.self));
-    listItem.append(img);
-
-    const nameAndGenres = document.createElement('div');
-    nameAndGenres.classList.add('name-genres');
-    
-    const showName = document.createElement('h2');
-    showName.classList.add('show-name');
-    showName.innerText = name;
-    showName.addEventListener('click', () => renderShow(_links.self));
-    nameAndGenres.append(showName);
-
-    const showGenres = document.createElement('p');
-    showGenres.classList.add('genres');
-    const genresList = genres.map(genre => `<span class="genre">${genre}</span>`);
-    showGenres.innerHTML = `Genres ${genresList.join(', ')}`;
-    nameAndGenres.append(showGenres);
-
-    listItem.append(nameAndGenres);
-
-    searchResultList.append(listItem);
-  });
-  contentDiv.append(searchResultList);
-};
 
 const renderShow = async ({ href }) => {
   resetResult();
@@ -110,7 +70,7 @@ const renderShow = async ({ href }) => {
   episodesTable.append(thead);
 
   const tbody = document.createElement('tbody');
-  const tbodyRows = episodesData.map(({ season, number, name, airdate }) => {
+  episodesData.map(({ season, number, name, airdate }) => {
     const nameSpan = `<span class="episode-name">${name}</span>`;
     const episodeName = `${season}x${number < 10 ? '0' + number: number}: ${nameSpan}`;
     const episodeAirdate = moment(airdate).format('MMM DD, YYYY');
