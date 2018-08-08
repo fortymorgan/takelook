@@ -11,16 +11,16 @@ module.exports = [
   },
   {
     path: 'search',
-    component: () => {
+    component: (value) => {
       resetList();
-      renderSearchResult();
+      renderSearchResult(value);
     },
   },
   {
     path: 'show',
-    component: () => {
+    component: (value) => {
       resetList();
-      renderShow();
+      renderShow(value);
     },
   }
 ];

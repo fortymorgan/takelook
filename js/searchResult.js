@@ -1,7 +1,7 @@
-const render = require('./render');
 const pushHistoryState = require('./pushHistory');
 
-const renderSearch = async searchValue => {
+module.exports = async searchValue => {
+  const contentDiv = document.querySelector('.content');
   const header = document.createElement('h1');
   header.classList.add('search-head');
   header.innerText = 'Search result';
@@ -15,7 +15,9 @@ const renderSearch = async searchValue => {
   searchResult.forEach(({ show }) => {
     const listItem = document.createElement('li');
 
-    const { image, _links, name, genres } = show;
+    const { image, _links: { self: { href } }, name, genres } = show;
+    const [_, __, showId] = new URL(href).pathname.split('/');
+    console.log(showId)
 
     const img = document.createElement('img');
     if (!image) {
@@ -24,7 +26,7 @@ const renderSearch = async searchValue => {
       img.src = image.medium
     }
     img.setAttribute('width','150');
-    img.addEventListener('click', () => renderShow(_links.self));
+    img.addEventListener('click', () => pushHistoryState('show', showId));
     listItem.append(img);
 
     const nameAndGenres = document.createElement('div');
@@ -33,7 +35,7 @@ const renderSearch = async searchValue => {
     const showName = document.createElement('h2');
     showName.classList.add('show-name');
     showName.innerText = name;
-    showName.addEventListener('click', () => renderShow(_links.self));
+    showName.addEventListener('click', () => pushHistoryState('show', showId));
     nameAndGenres.append(showName);
 
     const showGenres = document.createElement('p');
@@ -48,7 +50,3 @@ const renderSearch = async searchValue => {
   });
   contentDiv.append(searchResultList);
 };
-
-module.exports = async () => {
-  const contentDiv = document.querySelector('.content')
-}
