@@ -21,7 +21,7 @@ module.exports = async searchValue => {
 
     const img = document.createElement('img');
     if (!image) {
-      img.src = 'no-image.png';
+      img.src = '/static/no-image.png';
     } else {
       img.src = image.medium
     }
