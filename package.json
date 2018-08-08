@@ -4,7 +4,12 @@
   "description": "",
   "main": "takelook.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "webpack",
+    "deploy": "npm run build && npm run prepare-surge && npm run deploy-surge",
+    "prepare-surge": "mkdir -p surge && cp static/index.html surge && cp static/index.html surge/200.html && cp -r static surge",
+    "deploy-surge": "surge --domain tvmaze-shows.surge.sh surge"
   },
   "repository": {
     "type": "git",
