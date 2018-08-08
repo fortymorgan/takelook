@@ -17,7 +17,6 @@ module.exports = async searchValue => {
 
     const { image, _links: { self: { href } }, name, genres } = show;
     const [_, __, showId] = new URL(href).pathname.split('/');
-    console.log(showId)
 
     const img = document.createElement('img');
     if (!image) {
