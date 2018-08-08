@@ -1,4 +1,5 @@
 const pushHistoryState = require('./pushHistory');
+const render = require('./render');
 
 module.exports = async searchValue => {
   const contentDiv = document.querySelector('.content');
@@ -25,7 +26,10 @@ module.exports = async searchValue => {
       img.src = image.medium
     }
     img.setAttribute('width','150');
-    img.addEventListener('click', () => pushHistoryState('show', showId));
+    img.addEventListener('click', () => {
+      pushHistoryState('show', showId);
+      render.render();
+    });
     listItem.append(img);
 
     const nameAndGenres = document.createElement('div');
@@ -34,7 +38,10 @@ module.exports = async searchValue => {
     const showName = document.createElement('h2');
     showName.classList.add('show-name');
     showName.innerText = name;
-    showName.addEventListener('click', () => pushHistoryState('show', showId));
+    showName.addEventListener('click', () => {
+      pushHistoryState('show', showId);
+      render.render();
+    });
     nameAndGenres.append(showName);
 
     const showGenres = document.createElement('p');
