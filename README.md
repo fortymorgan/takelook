@@ -12,7 +12,7 @@ App for search TV-shows with [TVmaze API](http://www.tvmaze.com/api).
 ## How to develop
 First you need to create `bundle.js` with:
 ```
-npm run build
+npm run watch
 ```
 Then, to run the app locally:
 ```
