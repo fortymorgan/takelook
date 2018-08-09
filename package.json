@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "build": "webpack",
+    "watch": "webpack --watch",
     "deploy": "npm run build && npm run prepare-surge && npm run deploy-surge",
     "prepare-surge": "mkdir -p surge && cp static/index.html surge && cp static/index.html surge/200.html && cp -r static surge",
     "deploy-surge": "surge --domain tvmaze-shows.surge.sh surge"
@@ -26,6 +27,7 @@
     "webpack-cli": "^3.0.7"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "moment": "^2.22.2"
   }
 }

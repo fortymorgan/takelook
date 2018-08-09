@@ -8,7 +8,7 @@ module.exports = async searchValue => {
   header.innerText = 'Search result';
   contentDiv.append(header);
 
-  const searchUrl = `http://api.tvmaze.com/search/shows?q=${searchValue.replace(' ', '%20')}`;
+  const searchUrl = `//api.tvmaze.com/search/shows?q=${searchValue.replace(' ', '%20')}`;
   const searchResult = await fetch(searchUrl)
     .then(blob => blob.json());
 
@@ -23,7 +23,7 @@ module.exports = async searchValue => {
     if (!image) {
       img.src = '/static/no-image.png';
     } else {
-      img.src = image.medium
+      img.src = image.medium.substr(image.medium.indexOf(':') + 1); 
     }
     img.setAttribute('width','150');
     img.addEventListener('click', () => {

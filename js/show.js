@@ -1,9 +1,11 @@
+const moment = require('moment');
+
 module.exports = async (id) => {
   const contentDiv = document.querySelector('.content');
   const show = document.createElement('div');
   show.classList.add('show');
 
-  const searchUrl = `http://api.tvmaze.com/shows/${id}`;
+  const searchUrl = `//api.tvmaze.com/shows/${id}`;
   const { name, image, summary } = await fetch(searchUrl)
     .then(blob => blob.json());
 
@@ -16,7 +18,7 @@ module.exports = async (id) => {
   if (!image) {
     img.src = '/static/no-image.png';
   } else {
-    img.src = image.medium
+    img.src = image.medium.substr(image.medium.indexOf(':') + 1);
   }
   show.append(img);
 
