@@ -1,5 +1,5 @@
 # Takelook
-App for search TV-shows with [TVmaze API](http://www.tvmaze.com/api).
+An app for searching for TV-shows. Using [TVmaze API](http://www.tvmaze.com/api).
 
 ## Screenshots
 
